@@ -1,0 +1,102 @@
+Приложения:
+1 - block_home + block_about
+3 - block_staffs
+4 - block_shedulle
+5 - block_video
+6 - block_docs
+7 - block_publications
+8 - block_news
+9 - block_gallery
+10 - block_contacts
+11 - block_settings
+
+----------------------
+
+1 - Homepage
+1.1 - Название организации (из настроек)
+1.2 - Наименование детсада (из настроек)
+1.3 - Слоган (из таблицы homepage)
+1.4 - Форма записи в детсад
+
++++ - решил совместить
+
+2 - About
+2.1 - Описание (таблица about)
+2.2 - Преимущества (таблица about_advantages)
+2.3 - Новости (таблица news)
+2.4 - Фото-тур (таблица gallery)
+
+===
+
+3 - Staffs
+3.1 - Фото работников (таблица stafs)
+2.1 - Отзывы (таблица stafs_reviews)
+
+===
+
+4 - Shedulle
+4.1 - Группы (таблица shedulle_category)
+4.2 - Расписание (таблица shedulle)
+4.3 - Описание (таблица shedulle_class)
+
+===
+
+5 - Video
+5.1 - Описание (таблица video)
+5.2 - Видео (таблица video_item)
+
+===
+
+6 - Documents
+6.1 - Докумнентация (таблица document)
+
+===
+
+7 - Publications
+7.1 - Описание (таблица publications)
+7.2 - Категории (таблица publications_cats)
+	7.2.1 - Фото и описание (таблица publications_cats)
+7.3 - Публикация (таблица publications_item)
+	7.3.1 - Номер (ИД - publications_item)
+	7.3.2 - Дата (Дата публикации - publications_item)
+	7.3.3 - Автор (связь с author_publication_item)
+		7.3.3.1 - ФИО (таблица author)
+		7.3.3.2 - Должность (таблица author)
+		7.3.3.3 - Детсад (таблица author)
+		7.3.3.4 - Публикации (связь с author_publication_item)
+	7.3.4 - Наименование (таблица publications_item)
+	7.3.5 - Файл (таблица publications_item)
+
+===
+
+8 - Page (News)
+8.1 - Заголовок (таблица page)
+8.2 - Алиас (таблица page)
+8.3 - Описание (таблица page)
+8.4 - Фото (таблица page)
+8.5 - Полный текст (таблица page)
+8.6 - Дата публикации (таблица page)
+8.7 - Галерея (связь с gallery)
+8.8 - Родитель (связь в page) - надо еще продумать
+
+===
+
+9 - Gallery
+9.1 - Наименование (таблица gallery)
+9.2 - Ссылка (таблица gallery)
+9.3 - Размер (таблица gallery)
+9.4 - Расширение (таблица gallery)
+
+===
+
+10 - Contacts
+10.1 - FAQ (таблица contacts_questions)
+	10.1.1 - Вопрос
+	10.1.2 - Ответ
+10.2 - Контакты (связь с contacts_contact)
+10.3 - Карта (связь с contacts_geo)
+10.4 - Социалки (связь с contacts_social)
+
+===
+
+11 - Settings (надо обдумать)

@@ -1,0 +1,17 @@
+{% load static %}
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col logo">
+                <a href="{% url 'home:details' %}" class="logo__link">
+                    <img src="{% static '/img/logo.png' %}" alt="logo" class="logo__img">
+                </a>
+            </div>
+            <div class="col nav d-flex justify-content-end align-content-center">
+                <button class="nav__btn">
+                    <img src="{% static '/img/burger.svg' %}" alt="nav" class="nav__btn-img">
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
