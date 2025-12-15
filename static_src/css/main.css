@@ -22,6 +22,8 @@
 
     /* Footer */
     --footer-bg: var(--color-green);
+    --footer-text-color: white;
+    --footer-font: var(--font-montserrat);
 }
 
 /* Base */
@@ -79,4 +81,54 @@ h1, h2, h3, h4, h5, h6 {
 /* Footer */
 .footer {
     background-color: var(--header-bg);
+    padding: 10px 0 14px;
+
+    .text-row {
+        font-family: var(--footer-font), sans-serif;
+        color: var(--footer-text-color);
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 18px;
+    }
+
+    .row {
+        .col {
+            &:last-child {
+                text-align: center;
+            }
+        }
+    }
+}
+
+/* Social */
+
+.social {
+    .social__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        justify-content: center;
+    }
+    .social__item {
+        overflow: hidden;
+        border-radius: 50%;
+    }
+    .social__link {
+        line-height: 0;
+
+        @media screen and (max-width: 992px) {
+            font-size: 30px!important;
+        }
+    }
+    .social__icon {
+        width: 1em;
+        height: 1em;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
 }
