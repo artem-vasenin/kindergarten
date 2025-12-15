@@ -89,12 +89,25 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 12px;
         font-weight: 700;
         line-height: 18px;
+
+        @media screen and (min-width: 992px) {
+            font-size: 20px;
+            line-height: 26px;
+        }
     }
 
     .row {
         .col {
             &:last-child {
                 text-align: center;
+
+                @media screen and (min-width: 992px) {
+                    text-align: initial;
+
+                    .text-row {
+                        padding-left: 40px;
+                    }
+                }
             }
         }
     }
