@@ -3,8 +3,33 @@
 
 {% block title %}Home{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/pages/home/css/styles.css' %}">
+{% endblock %}
+
 {% block body %}
 <section class="home">
-    Home
+    <section class="billboard" style="background-image: url('{% static '/pages/home/img/billboard-bg.jpg' %}')">
+        <div class="billboard__content container">
+            <div class="row">
+                <div class="col">
+                    <div class="billboard__content-subtitle">
+                        Государственное бюджетное дошкольное образовательное учреждение
+                    </div>
+                    <div class="billboard__content-title">
+                        Детский сад
+                    </div>
+                    <ul class="billboard__content-benefits">
+                        <li class="billboard__content-benefit">Индивидуальный подход к каждому ребёнку</li>
+                        <li class="billboard__content-benefit">Развивающие игры и творческие мастерские</li>
+                        <li class="billboard__content-benefit">Занятия с логопедом и педагогами-психологами</li>
+                    </ul>
+                    <div class="billboard__content-actions">
+                        <button class="btn btn--accent">Записаться</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </section>
 {% endblock %}

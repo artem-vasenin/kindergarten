@@ -1,0 +1,44 @@
+.home {
+    .billboard {
+        padding-top: 50px;
+        padding-bottom: 360px;
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: contain;
+        background-color: #fff5ef;
+    }
+    .billboard__content-subtitle {
+        font-size: 16px;
+        line-height: 1.4;
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: var(--font-montserrat), sans-serif;
+        color: var(--color-dark);
+    }
+    .billboard__content-title {
+        font-size: 26px;
+        line-height: 1.4;
+        text-align: center;
+        margin-bottom: 26px;
+        font-weight: 700;
+        font-family: var(--font-montserrat), sans-serif;
+        color: var(--color-dark);
+    }
+    .billboard__content-benefits {
+        margin: 0 0 30px;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+    }
+    .billboard__content-benefit {
+        color: var(--color-green);
+        font-size: 12px;
+        font-family: var(--font-montserrat), sans-serif;
+    }
+    .billboard__content-actions {
+        text-align: center;
+    }
+}
