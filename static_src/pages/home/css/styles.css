@@ -4,7 +4,7 @@
         padding-bottom: 360px;
         background-repeat: no-repeat;
         background-position: bottom center;
-        background-size: contain;
+        background-size: 330px;
         background-color: #fff5ef;
     }
     .billboard__content-subtitle {
@@ -25,18 +25,21 @@
         color: var(--color-dark);
     }
     .billboard__content-benefits {
-        margin: 0 0 30px;
         padding: 0;
         list-style: none;
         display: flex;
         flex-direction: column;
         gap: 4px;
-        width: 100%;
+        width: 320px;
+        margin: 0 auto 30px;
     }
     .billboard__content-benefit {
+        display: block;
         color: var(--color-green);
         font-size: 12px;
+        line-height: 22px;
         font-family: var(--font-montserrat), sans-serif;
+        background-image: url("pages/home/img/underline.png");
     }
     .billboard__content-actions {
         text-align: center;
