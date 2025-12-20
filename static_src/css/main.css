@@ -4,6 +4,7 @@
     /* Colors */
     --color-green: #9EB378;
     --color-green-lite: #E2EFCA;
+    --color-green-a09: rgba(158, 179, 120, 0.9);
     --color-red: #FF6B4D;
     --color-red-lite: #FF7C7C;
     --color-red-dark: #E65C3E;
@@ -19,6 +20,9 @@
 
     /* Header */
     --header-bg: var(--color-green);
+
+    /* Drawer */
+    --drawer-bg: var(--color-green-a09);
 
     /* Footer */
     --footer-bg: var(--color-green);
@@ -42,12 +46,16 @@ h1, h2, h3, h4, h5, h6 {
 /* Header */
 .header {
     background-color: var(--header-bg);
-    padding-top: 10px;
-    padding-bottom: 10px;
+    /*padding-top: 10px;*/
+    /*padding-bottom: 10px;*/
     height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 
-    @media screen and (min-width: 992px){
-        height: 90px;
+    .container, .row {
+        height: 60px;
     }
 
     .logo {
@@ -55,13 +63,14 @@ h1, h2, h3, h4, h5, h6 {
             text-decoration: none;
             line-height: 0;
             font-size: 0;
+
+            @media screen and (min-width: 992px){
+                line-height: 0;
+                font-size: 0;
+            }
         }
         .logo__img {
             max-width: 30px;
-
-            @media screen and (min-width: 992px){
-                max-width: 45px;
-            }
         }
     }
 
@@ -75,11 +84,30 @@ h1, h2, h3, h4, h5, h6 {
             font-size: 0;
         }
     }
+    .header__nav-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        width: 100%;
+    }
+    .header__nav-link {
+
+    }
+
+    .text-row {
+        font-family: var(--footer-font), sans-serif;
+        color: var(--footer-text-color);
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 22px;
+    }
 }
 
 /* Main */
 .main {
     /*min-height: 80vh;*/
+    padding-top: 60px;
 }
 
 /* Footer */
@@ -155,7 +183,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Social */
-
 .social {
     .social__list {
         margin: 0;
@@ -187,6 +214,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Button base */
 .btn {
     border: none;
     height: 43px;
@@ -201,12 +229,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     font-size: 24px;
     padding: 0 20px;
-    
-    @media screen and (min-width: 992px) {
-        font-size: 36px;
-        height: 63px;
-        width: 400px;
-    }
 
     &.btn--accent {
         background-color: var(--color-red-lite);
@@ -218,5 +240,105 @@ h1, h2, h3, h4, h5, h6 {
         &:active {
            background-color: var(--color-red-dark);
         }
+    }
+}
+
+/* Burger icon */
+.burger {
+    position: relative;
+    width: 34px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    transition: all .4s;
+
+    .burger__inner, &::before, &::after {
+        display: block;
+        width: 100%;
+        height: 3px;
+        border-radius: 6px;
+        background-color: white;
+        transition: all .4s;
+    }
+
+    &::before, &::after {
+        content: '';
+        width: 28px;
+    }
+
+    &:hover {
+        gap: 6px;
+        transition: all .4s;
+
+        &::before, &::after {
+            width: 100%;
+            transition: all .4s;
+        }
+    }
+
+    &.burger--active {
+        &::before, &::after {
+            width: 34px;
+            position: absolute;
+            top: calc(50% - 2px);
+            transform: rotate(45deg);
+            transition: all .4s;
+        }
+        .burger__inner {
+           position: absolute;
+            top: calc(50% - 2px);
+            transform: rotate(-45deg);
+            transition: all .4s;
+        }
+    }
+}
+
+.drawer {
+    background-color: var(--drawer-bg);
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+    transition: left .3s, right .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+
+    &.drawer--active {
+        left: 0;
+        right: 0;
+        transition: left .3s, right .3s;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        height: 4px;
+        background-color: var(--color-green-lite);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .drawer__list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        max-width: 400px;
+    }
+
+    .drawer__link {
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        line-height: 36px;
+        font-weight: 600;
+        font-family: var(--font-montserrat), sans-serif;
     }
 }

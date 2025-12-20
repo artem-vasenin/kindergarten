@@ -39,7 +39,10 @@
         font-size: 12px;
         line-height: 22px;
         font-family: var(--font-montserrat), sans-serif;
-        background-image: url("pages/home/img/underline.png");
+        background-image: url("../img/underline.png");
+        background-repeat: no-repeat;
+        background-position: bottom left;
+        background-size: 100%;
     }
     .billboard__content-actions {
         text-align: center;
