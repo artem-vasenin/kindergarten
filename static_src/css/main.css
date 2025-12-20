@@ -10,6 +10,7 @@
     --color-red-dark: #E65C3E;
     --color-yellow: #FFEDB7;
     --color-yellow-lite: #FBF1E8;
+    --color-yellow-lite2: #FFF5EF;
     --color-dark: #444444;
     --color-lavanda: #CABBE9;
     --color-lavanda-lite: rgba(202, 187, 233, 0.2);
@@ -28,6 +29,12 @@
     --footer-bg: var(--color-green);
     --footer-text-color: white;
     --footer-font: var(--font-montserrat);
+
+    /* Billboard */
+    --billboard-bg: var(--color-yellow-lite2);
+
+    /* About */
+    --about-bg: var(--color-green-lite);
 }
 
 /* Base */
@@ -340,5 +347,31 @@ h1, h2, h3, h4, h5, h6 {
         line-height: 36px;
         font-weight: 600;
         font-family: var(--font-montserrat), sans-serif;
+    }
+}
+
+.page-title {
+    font-family: var(--font-montserrat), sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 34px;
+    margin-bottom: 16px;
+
+    @media screen and(min-width: 992px) {
+        font-size: 36px;
+        line-height: 46px;
+        margin-bottom: 30px;
+    }
+}
+
+.page-text {
+    font-family: var(--font-montserrat), sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+
+    @media screen and (min-width: 992px) {
+        font-size: 22px;
+        line-height: 28px;
     }
 }

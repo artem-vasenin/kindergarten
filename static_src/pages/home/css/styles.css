@@ -1,6 +1,6 @@
 .home {
     .billboard {
-        background-color: #fff5ef;
+        background-color: var(--billboard-bg);
 
         .container {
             background-repeat: no-repeat;
@@ -92,5 +92,21 @@
         @media screen and (min-width: 992px) {
             text-align: initial;
         }
+    }
+}
+
+.about {
+    background-color: var(--about-bg);
+    padding-top: 30px;
+
+    .about__photo {
+        padding-bottom: 10px;
+        font-size: 0;
+        line-height: 0;
+    }
+
+    .about__img {
+        max-width: 100%;
+        border-radius: 10px;
     }
 }
