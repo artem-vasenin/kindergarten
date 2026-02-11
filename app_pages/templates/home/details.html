@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="{% static '/pages/home/css/styles.css' %}">
 {% endblock %}
 
+{% block scripts %}
+    <script src="{% static '/pages/home/js/scripts.js' %}" defer></script>
+{% endblock %}
+
 {% block body %}
 <section class="home">
     <section class="billboard">
@@ -37,18 +41,53 @@
     <section class="about">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col-12">
                     <div class="about__title page-title">О нас</div>
-                    <div class="about__photo">
-                        <img class="about__img" src="https://placehold.co/380x280/BBBBBB/FFFFFF/png" alt="about"/>
+                </div>
+                <div class="col-12 about__bg">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-4">
+                            <div class="about__photo">
+                                <img class="about__img" src="https://placehold.co/380x280/BBBBBB/FFFFFF/png" alt="about"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-8">
+                            <div class="about__content page-text">
+                                <p>Наш сайт в первую очередь адресован тем, кто заинтересован в гармоничном и всестороннем развитии своего ребёнка, кто готов поделиться опытом и рассказать о трудностях воспитания и обучения дошкольника, кто желает сотрудничать с квалифицированными специалистами.</p>
+                            </div>
+                            <div class="about__action">
+                                <button class="btn btn--accent">Подробнее</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="about__content page-text">
-                        <p>Наш сайт в первую очередь адресован тем, кто заинтересован в гармоничном и всестороннем развитии своего ребёнка, кто готов поделиться опытом и рассказать о трудностях воспитания и обучения дошкольника, кто желает сотрудничать с квалифицированными специалистами.</p>
-                        <p>Наш сайт в первую очередь адресован тем, кто заинтересован в гармоничном и всестороннем развитии своего ребёнка, кто готов поделиться опытом и рассказать о трудностях воспитания и обучения дошкольника, кто желает сотрудничать с квалифицированными специалистами.</p>
-                        <p>Наш сайт в первую очередь адресован тем, кто заинтересован в гармоничном и всестороннем развитии своего ребёнка, кто готов поделиться опытом и рассказать о трудностях воспитания и обучения дошкольника, кто желает сотрудничать с квалифицированными специалистами.</p>
-                    </div>
-                    <div class="about__action">
-                        <button class="btn btn--accent">Записаться</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="about__title page-title">Наши преимущества</div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-4">
+                            <div class="advantages__photo">
+                                <img class="advantages__img" src="https://placehold.co/380x280/BBBBBB/FFFFFF/png" alt="about"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <div class="about__content page-text">
+                                <p>Наш сайт в первую очередь адресован тем, кто заинтересован в гармоничном и всестороннем развитии своего ребёнка, кто готов поделиться опытом и рассказать о трудностях воспитания и обучения дошкольника, кто желает сотрудничать с квалифицированными специалистами.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <div class="about__content page-text">
+                                <p>Наш сайт в первую очередь адресован тем, кто заинтересован в гармоничном и всестороннем развитии своего ребёнка, кто готов поделиться опытом и рассказать о трудностях воспитания и обучения дошкольника, кто желает сотрудничать с квалифицированными специалистами.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

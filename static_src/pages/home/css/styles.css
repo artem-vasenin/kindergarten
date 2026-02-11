@@ -1,7 +1,7 @@
 .home {
-    .billboard {
-        background-color: var(--billboard-bg);
+    background-color: var(--home-bg);
 
+    .billboard {
         .container {
             background-repeat: no-repeat;
             background-position: bottom center;
@@ -96,17 +96,53 @@
 }
 
 .about {
-    background-color: var(--about-bg);
     padding-top: 30px;
+
+    .about__bg {
+        background-color: var(--about-bg);
+        border-radius: 20px;
+        padding: 20px;
+    }
 
     .about__photo {
         padding-bottom: 10px;
         font-size: 0;
         line-height: 0;
+        text-align: center;
+
+        @media screen and (min-width: 992px) {
+            text-align: initial;
+            padding-bottom: 0;
+        }
     }
 
     .about__img {
         max-width: 100%;
         border-radius: 10px;
+    }
+
+    .about__content {
+        max-height: initial;
+        transition: max-height .3s;
+
+        &.hide-details {
+            max-height: 220px;
+            overflow: hidden;
+            transition: max-height .3s;
+
+            @media screen and (min-width: 992px) {
+                max-height: 220px;
+            }
+        }
+    }
+
+    .about__action {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+
+        @media screen and (min-width: 992px) {
+            text-align: initial;
+        }
     }
 }
