@@ -1,0 +1,104 @@
+.news-list {
+    .news__title {
+        padding: 26px 0;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 34px;
+        color: var(--color-dark);
+    }
+    .news-list__main {
+        padding-bottom: 26px;
+
+        .news-list__main-title {
+            padding-bottom: 16px;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 24px;
+            color: var(--color-dark);
+        }
+        .news-list__main-content {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            color: var(--color-dark);
+            padding-bottom: 16px;
+        }
+        .news-list__main-photo-block {
+            border-radius: 10px;
+            overflow: hidden;
+            line-height: 0;
+            font-size: 0;
+        }
+        .news-list__main-photo {
+            max-width: 100%;
+        }
+    }
+
+    .news-list__row {
+        @media screen and (min-width: 768px) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    }
+    .news-list__col {
+        display: block;
+        text-decoration: none;
+        margin-bottom: 16px;
+        background-color: var(--color-yellow);
+        padding: 10px;
+        border-radius: 10px;
+        transition: background-color .3s;
+
+        &:hover {
+            background-color: var(--color-green-lite);
+            transition: background-color .3s;
+        }
+
+        @media screen and (min-width: 768px) {
+            flex: 0 0 calc(50% - 8px);
+            max-width: calc(50% - 8px);
+        }
+
+        @media screen and (min-width: 1200px) {
+            flex: 0 0 calc(33.33% - 10px);
+            max-width: calc(33.33% - 10px);
+        }
+    }
+    .news-list__item-title {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 24px;
+        color: var(--color-dark);
+        padding-bottom: 4px;
+        margin: 0;
+    }
+    .news-list__item-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--color-lavanda-dark);
+    }
+    .news-list__item-content {
+        display: inline-block;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: normal;
+        color: var(--color-dark);
+        padding-bottom: 16px;
+    }
+    .news-list__item-photo-block {
+        display: inline-block;
+        border-radius: 10px;
+        overflow: hidden;
+        line-height: 0;
+        font-size: 0;
+    }
+    .news-list__item-photo {
+        max-width: 100%;
+    }
+}
