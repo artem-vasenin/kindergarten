@@ -1,6 +1,6 @@
 from django.urls import path
 
-from app_pages.views.home_views import HomeView
+from app_home.views import HomeView
 
 
 app_name = 'home'

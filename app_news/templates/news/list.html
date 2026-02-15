@@ -1,0 +1,35 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/pages/news/css/styles.css' %}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static '/pages/news/js/scripts.js' %}" defer></script>
+{% endblock %}
+
+{% block body %}
+<section class="news-list">
+   <div class="container">
+      <div class="row">
+        <div class="col-12">
+            <div class="news__title page-title">Новости и события</div>
+        </div>
+        <div class="col-12">
+            <div class="news-list__main">
+               <div class="news-list__main-title page-title">Наши чемпионы</div>
+               <div class="news-list__main-content">
+                   Команда подготовительной группы №1 заняла 1 место в экологическом конкурсе “Юные знатоки природы” среди дошкольных учреждений Московского  района. ПОЗДРАВЛЯЕМ! ТАК ДЕРЖАТЬ!
+               </div>
+               <div class="news-list__main-photo-block">
+                   <img src="{% static '/img/tmp.png' %}" alt="logo" class="news-list__main-photo">
+               </div>
+            </div>
+        </div>
+      </div>
+   </div>
+</section>
+{% endblock %}
