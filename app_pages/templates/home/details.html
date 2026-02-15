@@ -5,10 +5,38 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static '/pages/home/css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static '/pages/home/js/scripts.js' %}" defer></script>
+    <script type="module">
+      import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.mjs'
+
+      const swiper = new Swiper('.swiper', {
+          loop: true,
+          slidesPerView: 1,
+          spaceBetween: 10,
+          // Responsive breakpoints
+          breakpoints: {
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 12,
+              },
+              1200: {
+                slidesPerView: 3,
+                spaceBetween: 54,
+                centeredSlides: true,
+              },
+          },
+
+          // Navigation arrows
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+    </script>
 {% endblock %}
 
 {% block body %}
@@ -47,8 +75,8 @@
                 <div class="col-12 about__bg">
                     <div class="row">
                         <div class="col-sm-12 col-lg-4">
-                            <div class="about__photo">
-                                <img class="about__img" src="https://placehold.co/380x280/BBBBBB/FFFFFF/png" alt="about"/>
+                            <div class="about__photo-block">
+                                <img src="{% static '/img/tmp.png' %}" alt="logo" class="about__photo">
                             </div>
                         </div>
                         <div class="col-sm-12 col-lg-8">
@@ -71,23 +99,145 @@
                 <div class="col-12">
                     <div class="about__title page-title">Наши преимущества</div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 advantages__wrap">
                     <div class="row">
-                        <div class="col-sm-12 col-lg-4">
-                            <div class="advantages__photo">
-                                <img class="advantages__img" src="https://placehold.co/380x280/BBBBBB/FFFFFF/png" alt="about"/>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-4 order-lg-3">
+                                    <div class="advantages__photo-block">
+                                        <img src="{% static '/img/tmp.png' %}" alt="logo" class="advantages__photo">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-4 order-lg-1">
+                                    <div class="advantages__content page-text">
+                                        <div class="advantages__article">
+                                            <div class="advantages__article-title">
+                                                Заботливые воспитатели
+                                            </div>
+                                            <div class="advantages__article-text">
+                                                Воспитатели с педагогическим образованием и опытом работы
+                                            </div>
+                                        </div>
+                                        <div class="advantages__article">
+                                            <div class="advantages__article-title">
+                                                Образовательная программа
+                                            </div>
+                                            <div class="advantages__article-text">
+                                                Образовательная программа по стандарту ФГОС с использованием современного цифрового оборудования
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-4 order-lg-2">
+                                    <div class="advantages__content page-text">
+                                        <div class="advantages__article">
+                                            <div class="advantages__article-title">
+                                                Пятиразовое питание
+                                            </div>
+                                            <div class="advantages__article-text">
+                                                Сезонное 10-дневное меню. Покупка качественных продуктов у проверенных поставщиков
+                                            </div>
+                                        </div>
+                                        <div class="advantages__article">
+                                            <div class="advantages__article-title">
+                                                Безопасность
+                                            </div>
+                                            <div class="advantages__article-text">
+                                                Видеодомофон, сигнал тревожной кнопки и селекторная связь
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-lg-4">
-                            <div class="about__content page-text">
-                                <p>Наш сайт в первую очередь адресован тем, кто заинтересован в гармоничном и всестороннем развитии своего ребёнка, кто готов поделиться опытом и рассказать о трудностях воспитания и обучения дошкольника, кто желает сотрудничать с квалифицированными специалистами.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="news__title page-title">Новости и события</div>
+                </div>
+                <div class="col-12 px-0">
+                    <div class="news__row">
+                        <div class="news__content news__col">
+                            <div class="news__content-head">
+                                <div class="news__content-title">
+                                    Наши чемпионы!
+                                </div>
+                                <div class="news__icon-block">
+                                    <img src="{% static '/img/tmp.png' %}" alt="logo" class="news__icon">
+                                </div>
+                            </div>
+                            <div class="news__content-text">
+                                Команда подготовительной группы №1 заняла 1 место в экологическом конкурсе “Юные знатоки природы” среди дошкольных учреждений Московского  района. ПОЗДРАВЛЯЕМ! ТАК ДЕРЖАТЬ!
+                            </div>
+                            <div class="news__content-actions">
+                                <button class="btn btn--accent">Подробнее</button>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-lg-4">
-                            <div class="about__content page-text">
-                                <p>Наш сайт в первую очередь адресован тем, кто заинтересован в гармоничном и всестороннем развитии своего ребёнка, кто готов поделиться опытом и рассказать о трудностях воспитания и обучения дошкольника, кто желает сотрудничать с квалифицированными специалистами.</p>
+                        <div class="news__content news__col">
+                            <div class="news__content-head">
+                                <div class="news__content-title">
+                                    Благодарность за ваши голоса!
+                                </div>
+                                <div class="news__icon-block">
+                                    <img src="{% static '/img/tmp.png' %}" alt="logo" class="news__icon">
+                                </div>
+                            </div>
+                            <div class="news__content-text">
+                                Уважаемые родители! Благодарим вас за голоса, которые вы отдали за педагогов нашего детского сада - участников Московского профессионального конкурса педагогического мастерства
+                            </div>
+                            <div class="news__content-actions">
+                                <button class="btn btn--accent">Подробнее</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="photo">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="news__title page-title">Фото тур</div>
+                </div>
+                <div class="col-12 px-0">
+                   <div class="swiper">
+                      <!-- Additional required wrapper -->
+                      <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <img src="{% static '/img/tmp.png' %}" alt="logo" class="photo__img">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static '/img/tmp.png' %}" alt="logo" class="photo__img">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static '/img/tmp.png' %}" alt="logo" class="photo__img">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static '/img/tmp.png' %}" alt="logo" class="photo__img">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static '/img/tmp.png' %}" alt="logo" class="photo__img">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static '/img/tmp.png' %}" alt="logo" class="photo__img">
+                        </div>
+                      </div>
+                      <!-- If we need pagination -->
+                      <div class="swiper-pagination"></div>
+
+                      <!-- If we need navigation buttons -->
+                      <div class="swiper-button-prev"></div>
+                      <div class="swiper-button-next"></div>
                     </div>
                 </div>
             </div>
