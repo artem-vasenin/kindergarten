@@ -3,10 +3,7 @@
 </script>
 
 <template>
-<div class="page-home">
-  <h1>Home</h1>
-  <div><Btn>Hello</Btn></div>
-</div>
+<footer class="footer">Footer</footer>
 </template>
 
 <style scoped>
