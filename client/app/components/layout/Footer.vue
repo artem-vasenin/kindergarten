@@ -57,7 +57,7 @@
   padding: 10px 0 14px;
 
   @media screen and (min-width: 1024px) {
-    padding: 34px 0 47px;
+    padding: 20px 0;
   }
 }
 .grid {
