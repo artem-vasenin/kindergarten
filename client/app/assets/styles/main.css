@@ -15,14 +15,36 @@
 }
 
 *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+html {
+  height: 100%;
 }
 body {
-    font-family: var(--font-m), sans-serif;
-    font-size: 16px;
-    color: var(--color-dark);
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  font-family: var(--font-m), sans-serif;
+  font-size: 16px;
+  color: var(--color-dark);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#__nuxt {
+  height: 100%;
+}
+
+.container {
+  padding: 0 16px;
+  width: 100%;
+
+  @media screen and (min-width: 1056px) {
+    padding: 0;
+    width: 1024px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 1300px) {
+    width: 1280px;
+  }
 }

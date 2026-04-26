@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { size = 'md', block = false } = defineProps<{
-  size: 'xl' | 'md';
-  block: boolean;
+  size?: 'xl' | 'md';
+  block?: boolean;
 }>();
 </script>
 

@@ -8,4 +8,9 @@ export default defineNuxtConfig({
       mode: 'default',
     },
   },
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/image',
+  ],
 })
