@@ -1,6 +1,7 @@
 import logging
 from fastapi import FastAPI, Request
 
+from app.core.db import DbDeps, test_db
 from app.core.settings import Settings
 
 
@@ -17,6 +18,7 @@ def create_app() -> FastAPI:
 
 app = create_app()
 @app.get("/")
-def read_root(request: Request):
-    print(request.app.state.settings)
+async def read_root(request: Request, db: DbDeps):
+    res = await test_db(db)
+    print(request.app.state.settings, res)
     return {"Hello": "World"}
