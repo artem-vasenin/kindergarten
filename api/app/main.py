@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request
 
 from app.core.db import DbDeps, test_db
 from app.core.settings import Settings
+from app.user.routes import router as user_router
 
 
 logger = logging.getLogger(__name__)
@@ -17,6 +18,7 @@ def create_app() -> FastAPI:
         ]
     )
     new_app.state.settings = settings
+    new_app.include_router(user_router)
 
     logger.info(f"Запускаем список дел: {settings.app_name}")
 
