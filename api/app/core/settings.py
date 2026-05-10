@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     app_name: str = 'ToDo'
 
     database_url: str
+    database_url_sync: str
 
     model_config = SettingsConfigDict(
         env_file='.env',

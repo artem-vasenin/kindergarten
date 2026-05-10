@@ -9,7 +9,13 @@ logger = logging.getLogger(__name__)
 
 def create_app() -> FastAPI:
     settings = Settings() # type: ignore[call-arg]
-    new_app = FastAPI(title=settings.app_name,)
+    new_app = FastAPI(
+        title=settings.app_name,
+        openapi_tags=[
+            {'name': 'Tasks', 'description': 'Задачи'},
+            {'name': 'Auth', 'description': 'Пользователи'},
+        ]
+    )
     new_app.state.settings = settings
 
     logger.info(f"Запускаем список дел: {settings.app_name}")
