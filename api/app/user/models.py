@@ -13,7 +13,7 @@ class UserModel(Base):
     password: Mapped[str] = mapped_column(String(1024), nullable=False)
     role: Mapped[str] = mapped_column(String(128), nullable=False, default='guest')
 
-    def __init__(self, email: str, password: str, role: str, **kw: Any) -> None:
+    def __init__(self, email: str, password: str, role: str = 'guest', **kw: Any) -> None:
         super().__init__(**kw)
         self.email = email
         self.password = password

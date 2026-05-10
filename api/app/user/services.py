@@ -1,7 +1,10 @@
 from typing import Annotated
 from fastapi import Depends
 
+from app.core.db import DbDeps
+from app.user.models import UserModel
 from app.user.schemas import UserRegReq, UserUpdReq, UserFull
+from app.utils.security import hash_password
 
 
 class UserService:
@@ -9,7 +12,9 @@ class UserService:
         print(data)
         return 'token'
 
-    async def register(self, data: UserRegReq)->str:
+    async def register(self, data: UserRegReq, db: DbDeps)->str:
+        password = hash_password(data.password)
+        # user = UserModel(email=data.email, password=password)
         return 'token'
 
     async def update(self, uid: int, data: UserUpdReq)->UserFull | None:
