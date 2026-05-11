@@ -69,9 +69,11 @@ class UserService:
 
     async def delete(self, uid: int)->bool:
         if not uid:
+            logger.error('<Del User> UID is not found')
             return False
         user = await self.find_user(UserFind(id=uid), no_error=True)
         if not user:
+            logger.error('<Del User> User is not found')
             return False
         await self.db.delete(user)
         await self.db.commit()
@@ -85,10 +87,10 @@ class UserService:
 
     async def find_user(self, data: UserFind, no_error: bool = False)->UserModel | None:
         if not data.email and not data.id:
+            logger.error("Email and ID not found")
             if no_error:
                 return None
             else:
-                logger.error("Email and ID not found")
                 raise HTTPException(status_code=400, detail="Email and ID not found")
 
         q = select(UserModel)
