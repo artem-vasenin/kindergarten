@@ -1,7 +1,6 @@
 import logging
-from fastapi import FastAPI, Request, APIRouter
+from fastapi import FastAPI, APIRouter
 
-from app.core.db import DbDeps, test_db
 from app.core.settings import Settings
 from app.user.client_routes import router as user_client_router
 from app.user.admin_routes import router as user_admin_router
@@ -34,8 +33,3 @@ def create_app() -> FastAPI:
     return new_app
 
 app = create_app()
-@app.get("/")
-async def read_root(request: Request, db: DbDeps):
-    res = await test_db(db)
-    print(request.app.state.settings, res)
-    return {"Hello": "World"}
