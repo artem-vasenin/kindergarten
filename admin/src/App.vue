@@ -1,11 +1,41 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Header from '@/components/Header.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <section>
+    <Header />
+    <main class="main">
+      <router-view />
+    </main>
+  </section>
 </template>
 
-<style scoped></style>
+<style>
+  :root {
+    --color-gray: #bbb;
+    --color-gray-dark: #999;
+    --color-dark-light: #666;
+    --color-dark: #333;
+    --color-red-light: #ff4545;
+    --color-red: #800101;
+    --color-green-light: #82dd0d;
+    --color-green: #3f6c00;
+    --color-yellow-light: #ffdf6b;
+    --color-yellow: #cca600;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+  }
+  .container {
+    min-width: 320px;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+  }
+</style>

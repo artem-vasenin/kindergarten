@@ -7,6 +7,16 @@ from app.user.schemas import UserRegReq, UserFull, UserUpdReq, UserFind
 router = APIRouter(prefix='/user', tags=['Admin Users'])
 
 @router.post(
+    '/login',
+    status_code=200,
+    response_model=str | None,
+    summary='Вход и получение токена',
+)
+async def login(service: UserServiceDeps, data: UserRegReq)->str | None:
+    return await service.login(data)
+
+
+@router.post(
     '/register',
     status_code=201,
     response_model=str,
@@ -21,7 +31,7 @@ async def register(service: UserServiceDeps, data: UserRegReq, me: MeDeps)->str:
     response_model=list[UserFull],
     summary='Получить список пользователей',
 )
-async def get_list(service: UserServiceDeps, me: MeDeps)->list[UserFull]:
+async def get_list(service: UserServiceDeps, admin: AdminDeps)->list[UserFull]:
     return await service.get_list()
 
 
@@ -30,7 +40,7 @@ async def get_list(service: UserServiceDeps, me: MeDeps)->list[UserFull]:
     response_model=UserFull | None,
     summary='Получить пользователя по его ID',
 )
-async def get_by_id(service: UserServiceDeps, uid:int, me: MeDeps)->UserFull | None:
+async def get_by_id(service: UserServiceDeps, uid:int, admin: AdminDeps)->UserFull | None:
     payload = UserFind(id=uid)
     user = await service.find_user(payload)
     return service.transform_user(user)
@@ -41,7 +51,7 @@ async def get_by_id(service: UserServiceDeps, uid:int, me: MeDeps)->UserFull | N
     response_model=UserFull | None,
     summary='Получить пользователя по его email',
 )
-async def get_by_email(service: UserServiceDeps, email:str, me: MeDeps)->UserFull | None:
+async def get_by_email(service: UserServiceDeps, email:str, admin: AdminDeps)->UserFull | None:
     payload = UserFind(email=email)
     user = await service.find_user(payload)
     return service.transform_user(user)

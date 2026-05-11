@@ -1,8 +1,7 @@
 from fastapi import APIRouter
 
-from app.user.services import UserServiceDeps
-from app.user.schemas import UserRegReq
-
+from app.user.services import UserServiceDeps, MeDeps
+from app.user.schemas import UserRegReq, UserFull, UserFind
 
 router = APIRouter(prefix='/user', tags=['Client Users'])
 
@@ -24,3 +23,14 @@ async def login(service: UserServiceDeps, data: UserRegReq)->str | None:
 )
 async def register(service: UserServiceDeps, data: UserRegReq)->str:
     return await service.register(data)
+
+
+@router.get(
+    '/{uid}',
+    response_model=UserFull | None,
+    summary='Получить пользователя по его ID',
+)
+async def get_by_id(service: UserServiceDeps, uid:int, me: MeDeps)->UserFull | None:
+    payload = UserFind(id=uid)
+    user = await service.find_user(payload)
+    return service.transform_user(user)
