@@ -7,6 +7,9 @@ class Settings(BaseSettings):
     database_url: str
     database_url_sync: str
 
+    jwt_secret: str
+    jwt_time: int
+
     model_config = SettingsConfigDict(
         env_file='.env',
         env_file_encoding='utf-8',

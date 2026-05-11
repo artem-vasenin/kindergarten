@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 
-from app.user.schemas import UserRegReq, UserFull, UserUpdReq
+from app.user.schemas import UserRegReq, UserFull, UserUpdReq, UserFind
 from app.user.services import UserServiceDeps
 
 
-router = APIRouter(prefix='/user',)
+router = APIRouter(prefix='/user', tags=['Users'])
 
 @router.post('/login', status_code=200, response_model=str | None)
 async def login(service: UserServiceDeps, data: UserRegReq)->str | None:
@@ -20,11 +20,15 @@ async def get_list(service: UserServiceDeps)->list[UserFull]:
 
 @router.get('/{uid}', response_model=UserFull | None)
 async def get_by_id(service: UserServiceDeps, uid:int)->UserFull | None:
-    return await service.get_by_id(uid)
+    payload = UserFind(id=uid)
+    user = await service.find_user(payload)
+    return service.transform_user(user)
 
-@router.get('/{email}', response_model=UserFull | None)
+@router.get('/get_by_email/{email}', response_model=UserFull | None)
 async def get_by_email(service: UserServiceDeps, email:str)->UserFull | None:
-    return await service.get_by_email(email)
+    payload = UserFind(email=email)
+    user = await service.find_user(payload)
+    return service.transform_user(user)
 
 @router.patch('/{uid}', status_code=201, response_model=UserFull | None)
 async def update(service: UserServiceDeps, uid:int, data:UserUpdReq)->UserFull | None:

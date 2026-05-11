@@ -14,7 +14,7 @@ def create_app() -> FastAPI:
         title=settings.app_name,
         openapi_tags=[
             {'name': 'Tasks', 'description': 'Задачи'},
-            {'name': 'Auth', 'description': 'Пользователи'},
+            {'name': 'Users', 'description': 'Пользователи'},
         ]
     )
     new_app.state.settings = settings
