@@ -1,15 +1,18 @@
 import logging
 from typing import Annotated
-from fastapi import Depends, HTTPException, Request
 from sqlalchemy import select
+from fastapi.security import OAuth2PasswordBearer
+from fastapi import Depends, HTTPException, Request
 
 from app.user.models import UserModel
 from app.core.settings import Settings
 from app.core.db import DbDeps, AsyncSession
-from app.utils.security import hash_password, check_password, add_token
 from app.user.schemas import UserRegReq, UserUpdReq, UserFull, UserFind
+from app.utils.security import hash_password, check_password, add_token, get_uid_by_token
+
 
 logger = logging.getLogger(__name__)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/user/login")
 
 class UserService:
     def __init__(self, db: AsyncSession, settings: Settings):
@@ -114,3 +117,32 @@ UserServiceDeps = Annotated[
     UserService,
     Depends(get_service),
 ]
+
+async def me(
+        token: Annotated[str, Depends(oauth2_scheme)],
+        request: Request,
+        user_service: UserServiceDeps,
+) -> UserModel:
+    if not token:
+        logger.error("<Me> Token not found")
+        raise HTTPException(status_code=404, detail="Permission Denied")
+    uid = get_uid_by_token(token, request.app.state.settings.jwt_secret)
+    if not uid:
+        logger.error("<Me> UID not found")
+        raise HTTPException(status_code=404, detail="Permission Denied")
+    user = await user_service.find_user(UserFind(id=uid))
+    if not user:
+        logger.error("<Me> User not found")
+        raise HTTPException(status_code=404, detail="Permission Denied")
+    return user
+
+
+MeDeps = Annotated[UserModel, Depends(me)]
+
+async def admin(user: MeDeps):
+    if not user or not user.role == 'admin':
+        logger.error("<Admin> User not found or role is not admin")
+        raise HTTPException(status_code=403, detail="Permission Denied")
+    return user
+
+AdminDeps = Annotated[UserModel, Depends(admin)]

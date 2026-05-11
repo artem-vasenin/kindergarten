@@ -1,12 +1,10 @@
-import logging
-
 import jwt
+import logging
 from passlib.context import CryptContext
 from datetime import timezone, datetime, timedelta
 
 
 logger = logging.getLogger(__name__)
-
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def hash_password(password: str) -> str:

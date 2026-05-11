@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
+from app.user.services import UserServiceDeps, AdminDeps, MeDeps
 from app.user.schemas import UserRegReq, UserFull, UserUpdReq, UserFind
-from app.user.services import UserServiceDeps
 
 
 router = APIRouter(prefix='/user', tags=['Users'])
@@ -15,7 +15,7 @@ async def register(service: UserServiceDeps, data: UserRegReq)->str:
     return await service.register(data)
 
 @router.get('/', response_model=list[UserFull])
-async def get_list(service: UserServiceDeps)->list[UserFull]:
+async def get_list(service: UserServiceDeps, me: MeDeps)->list[UserFull]:
     return await service.get_list()
 
 @router.get('/{uid}', response_model=UserFull | None)
@@ -31,11 +31,11 @@ async def get_by_email(service: UserServiceDeps, email:str)->UserFull | None:
     return service.transform_user(user)
 
 @router.patch('/{uid}', status_code=201, response_model=UserFull | None)
-async def update(service: UserServiceDeps, uid:int, data:UserUpdReq)->UserFull | None:
+async def update(service: UserServiceDeps, uid:int, data:UserUpdReq, admin: AdminDeps)->UserFull | None:
     return await service.update(uid, data)
 
 @router.delete('/{uid}', status_code=200, response_model=bool)
-async def delete(service: UserServiceDeps, uid:int)->bool:
+async def delete(service: UserServiceDeps, uid:int, admin: AdminDeps)->bool:
     return await service.delete(uid)
 
 
