@@ -1,4 +1,4 @@
-import {ref} from "vue";
+import { ref } from "vue";
 import { defineStore } from "pinia";
 
 import { authService } from '@/http/auth.http.ts';
@@ -21,12 +21,12 @@ export const useProfileStore = defineStore("profile", () => {
     token.value = null;
     localStorage.removeItem("token");
   };
-  const getProfile = async (uid: number) => {
-    const res = await authService.getProfile(uid);
+  const getMe = async () => {
+    const res = await authService.getMe();
     if (res && res.status === 200 && res.data) {
       profile.value = { ...profile.value, ...res.data };
     }
   };
 
-  return { profile, token, login, logout, getProfile };
+  return { profile, token, login, logout, getMe };
 });

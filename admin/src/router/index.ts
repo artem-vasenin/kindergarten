@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import {useProfileStore} from "@/store/profile.store.ts";
 
 import UsersList from '@/pages/users/List.vue';
 import TasksList from '@/pages/tasks/List.vue';
 import AuthLogin from '@/pages/auth/Login.vue';
+import {RoleType} from "@/types/profile.types.ts";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -32,9 +34,9 @@ export const router = createRouter({
 });
 
 router.beforeEach((to) => {
-    const token = localStorage.getItem('token');
+    const store = useProfileStore();
 
-    if (to.meta.requiresAuth && !token) {
+    if (to.meta.requiresAuth && (!store.token || store.profile?.role !== RoleType.ADMIN)) {
         return '/login';
     }
 });

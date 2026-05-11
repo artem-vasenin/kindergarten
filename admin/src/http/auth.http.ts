@@ -4,14 +4,14 @@ import type {ILogin} from "@/types/profile.types.ts";
 export const authService = {
   async login(data: ILogin) {
     try {
-      return await http.post('/auth/login', data);
+      return await http.post('/user/login', data);
     } catch (e) {
       console.error(e);
     }
   },
-  async getProfile(uid: number) {
+  async getMe() {
     try {
-      return await http.get('/user/' + uid);
+      return await http.get('/user/me');
     } catch (e) {
       console.error(e);
     }

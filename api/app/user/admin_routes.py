@@ -36,6 +36,15 @@ async def get_list(service: UserServiceDeps, admin: AdminDeps)->list[UserFull]:
 
 
 @router.get(
+    '/me',
+    response_model=UserFull | None,
+    summary='Получить пользователя по его токену',
+)
+async def get_me(service: UserServiceDeps, admin: AdminDeps)->UserFull | None:
+    return service.transform_user(admin)
+
+
+@router.get(
     '/{uid}',
     response_model=UserFull | None,
     summary='Получить пользователя по его ID',

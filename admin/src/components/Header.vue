@@ -1,6 +1,14 @@
 <script setup lang="ts">
+  import { useRouter } from 'vue-router';
   import {useProfileStore} from "@/store/profile.store.ts";
+
   const store = useProfileStore();
+  const router = useRouter();
+
+  const logout = async () => {
+    store.logout();
+    await router.push("/login");
+  };
 </script>
 
 <template>
@@ -16,6 +24,9 @@
           </li>
           <li class="menu_item">
             <RouterLink to="/users" class="menu_link">Users</RouterLink>
+          </li>
+          <li class="menu_item">
+            <span class="menu_link" @click="logout">Logout</span>
           </li>
         </template>
         <li class="menu_item" v-else>
@@ -40,7 +51,7 @@
   .nav {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
     height: 100%;
   }
   .menu {
@@ -58,5 +69,6 @@
     color: white;
     font-size: 22px;
     font-weight: 100;
+    cursor: pointer;
   }
 </style>

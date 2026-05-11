@@ -6,7 +6,9 @@ import Header from '@/components/Header.vue';
   <section>
     <Header />
     <main class="main">
-      <router-view />
+      <div class="container">
+        <router-view />
+      </div>
     </main>
   </section>
 </template>
@@ -37,5 +39,6 @@ import Header from '@/components/Header.vue';
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
+    padding: 0 12px;
   }
 </style>

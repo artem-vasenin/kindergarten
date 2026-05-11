@@ -1,5 +1,6 @@
 import logging
 from fastapi import FastAPI, APIRouter
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.settings import Settings
 from app.user.client_routes import router as user_client_router
@@ -32,6 +33,16 @@ def create_app() -> FastAPI:
     new_app.state.settings = settings
     new_app.include_router(client_router)
     new_app.include_router(admin_router)
+
+    new_app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[
+            'http://localhost:5173',
+        ],
+        allow_credentials=True,
+        allow_methods=['*'],
+        allow_headers=['*'],
+    )
 
     logger.info(f"Запускаем список дел: {settings.app_name}")
 
