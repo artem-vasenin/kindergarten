@@ -20,6 +20,7 @@ class UserUpdReq(BaseModel):
 
     model_config = {"extra": "forbid"}
 
+
 class UserFind(BaseModel):
     id: int | None = None
     email: str | None = None
