@@ -1,26 +1,24 @@
 from pydantic import BaseModel
 
 
-class UserFull(BaseModel):
+class TaskFull(BaseModel):
     id: int
-    email: str
-    role: str
+    name: str
+    description: str | None
+    checked: bool
+    user_id: int
 
 
-class UserRegReq(BaseModel):
-    email: str
-    password: str
-
-    model_config = {"extra": "forbid"}
-
-
-class UserUpdReq(BaseModel):
-    password: str | None = None
-    role: str | None = None
+class TaskCreateReq(BaseModel):
+    name: str
+    description: str | None = None
 
     model_config = {"extra": "forbid"}
 
 
-class UserFind(BaseModel):
-    id: int | None = None
-    email: str | None = None
+class TaskUpdReq(BaseModel):
+    name: str | None = None
+    description: str | None = None
+    checked: bool | None = None
+
+    model_config = {"extra": "forbid"}

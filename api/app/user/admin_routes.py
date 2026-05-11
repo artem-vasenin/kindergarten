@@ -4,7 +4,7 @@ from app.user.services import UserServiceDeps, AdminDeps, MeDeps
 from app.user.schemas import UserRegReq, UserFull, UserUpdReq, UserFind
 
 
-router = APIRouter(prefix='/user')
+router = APIRouter(prefix='/user', tags=['Admin Users'])
 
 @router.post('/register', status_code=201, response_model=str)
 async def register(service: UserServiceDeps, data: UserRegReq)->str:
