@@ -16,9 +16,7 @@ const submit = async (e: any) => {
     return;
   }
   try {
-    const loginRes = await store.login({ email: email.value, password: password.value });
-    const meRes = await store.getMe();
-    console.log(meRes, loginRes);
+    await store.login({ email: email.value, password: password.value });
     await router.push("/");
   } catch (e) {
     console.error(e);

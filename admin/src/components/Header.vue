@@ -70,5 +70,10 @@
     font-size: 22px;
     font-weight: 100;
     cursor: pointer;
+
+    &.router-link-exact-active {
+      color: var(--color-yellow-light);
+      text-shadow: 0 0 2px var(--color-yellow-light);
+    }
   }
 </style>

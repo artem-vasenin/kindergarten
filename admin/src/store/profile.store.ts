@@ -13,13 +13,12 @@ export const useProfileStore = defineStore("profile", () => {
     const res = await authService.login(payload);
     if (res && res.status === 200 && res.data) {
       token.value = res.data
-      localStorage.setItem("token", res.data);
     }
+    const meRes = await getMe();
   };
   const logout = () => {
     profile.value = null;
     token.value = null;
-    localStorage.removeItem("token");
   };
   const getMe = async () => {
     const res = await authService.getMe();
@@ -29,4 +28,4 @@ export const useProfileStore = defineStore("profile", () => {
   };
 
   return { profile, token, login, logout, getMe };
-});
+}, { persist: true });

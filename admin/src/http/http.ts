@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useProfileStore } from "@/store/profile.store.ts";
 
 export const http = axios.create({
     baseURL: 'http://localhost:8000/api/admin',
@@ -9,9 +10,10 @@ export const http = axios.create({
 });
 
 http.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+  const store = useProfileStore();
+
+  if (store.token) {
+        config.headers.Authorization = `Bearer ${store.token}`;
     }
     return config;
 });
