@@ -13,3 +13,8 @@ export interface ILogin {
   email: string;
   password: string;
 }
+
+export interface IProfileUpdate {
+  password?: string;
+  role?: RoleType;
+}
