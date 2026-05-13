@@ -35,7 +35,8 @@ async def get_item(service: TaskServiceDeps, tid: int, me: MeDeps)->TaskFull | N
     summary='Добавление задачи',
 )
 async def set_item(service: TaskServiceDeps, data: TaskCreateReq, me: MeDeps)->TaskFull:
-    return await service.set_item(uid=me.id, data=data)
+    data.user_id = me.id
+    return await service.set_item(data=data)
 
 
 @router.patch(

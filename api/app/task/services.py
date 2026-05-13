@@ -21,7 +21,7 @@ class TaskService:
         q = select(TaskModel)
         if not is_admin:
             q = q.where(TaskModel.user_id == uid)
-        q.order_by(desc(TaskModel.id))
+        q = q.order_by(desc(TaskModel.id))
         result = (await self.db.execute(q)).scalars().all()
         return [self.transform_item(i) for i in result]
 
@@ -48,8 +48,8 @@ class TaskService:
         return item
 
 
-    async def set_item(self, uid: int, data: TaskCreateReq)->TaskFull:
-        item = TaskModel(**data.model_dump(), user_id=uid)
+    async def set_item(self, data: TaskCreateReq)->TaskFull:
+        item = TaskModel(**data.model_dump())
         self.db.add(item)
         await self.db.commit()
         await self.db.refresh(item)

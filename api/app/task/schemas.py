@@ -12,6 +12,8 @@ class TaskFull(BaseModel):
 class TaskCreateReq(BaseModel):
     name: str
     description: str | None = None
+    user_id: int | None = None
+    checked: bool | None = None
 
     model_config = {"extra": "forbid"}
 

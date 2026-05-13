@@ -14,4 +14,4 @@ export const useUsersStore = defineStore("users", () => {
   };
 
   return { list, getList };
-});
+}, { persist: true });

@@ -27,6 +27,9 @@ import Header from '@/components/Header.vue';
     --color-yellow: #cca600;
 
     --color-dark-a7: rgba(0, 0, 0, 0.7);
+    --color-dark-a5: rgba(0, 0, 0, 0.5);
+    --color-dark-a3: rgba(0, 0, 0, 0.3);
+    --color-dark-a2: rgba(0, 0, 0, 0.2);
   }
   * {
     margin: 0;

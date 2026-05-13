@@ -10,7 +10,7 @@ export interface ITaskCreate {
   name: string;
   description?: string;
   checked?: boolean;
-  user_id: number;
+  user_id?: number;
 }
 
 export interface ITaskUpdate {
