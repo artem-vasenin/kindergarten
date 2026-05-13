@@ -1,6 +1,6 @@
 import logging
 from typing import Annotated
-from sqlalchemy import select
+from sqlalchemy import select, desc
 from fastapi import Request, Depends, HTTPException
 
 from app.task.models import TaskModel
@@ -21,6 +21,7 @@ class TaskService:
         q = select(TaskModel)
         if not is_admin:
             q = q.where(TaskModel.user_id == uid)
+        q.order_by(desc(TaskModel.id))
         result = (await self.db.execute(q)).scalars().all()
         return [self.transform_item(i) for i in result]
 

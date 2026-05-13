@@ -22,8 +22,8 @@ async def login(service: UserServiceDeps, data: UserRegReq)->str | None:
     response_model=str,
     summary='Регистрация пользователя и получение токена',
 )
-async def register(service: UserServiceDeps, data: UserRegReq, me: MeDeps)->str:
-    return await service.register(data)
+async def register(service: UserServiceDeps, data: UserRegReq, admin: MeDeps)->str:
+    return await service.register(data, is_admin=True)
 
 
 @router.get(

@@ -9,6 +9,12 @@ export interface IProfile {
   role: RoleType;
 }
 
+export interface IRegister {
+  email: string;
+  password: string;
+  role?: RoleType;
+}
+
 export interface ILogin {
   email: string;
   password: string;

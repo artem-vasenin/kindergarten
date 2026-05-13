@@ -10,6 +10,7 @@ class UserFull(BaseModel):
 class UserRegReq(BaseModel):
     email: str
     password: str
+    role: str | None = None
 
     model_config = {"extra": "forbid"}
 

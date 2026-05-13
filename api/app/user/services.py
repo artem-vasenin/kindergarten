@@ -31,7 +31,7 @@ class UserService:
         return add_token(uid=user.id, secret=self.settings.jwt_secret, time=self.settings.jwt_time)
 
 
-    async def register(self, data: UserRegReq)->str:
+    async def register(self, data: UserRegReq, is_admin: bool = False)->str:
         payload = UserFind(email=data.email)
         double_item = await self.find_user(payload, no_error=True)
         if double_item:
@@ -44,7 +44,12 @@ class UserService:
             logger.error('Invalid password')
             raise HTTPException(status_code=400, detail="Invalid password")
 
-        user = UserModel(email=data.email, password=hashed_password)
+        dto = {'email': data.email, 'password': hashed_password}
+
+        if data.role and is_admin and (data.role == 'guest' or data.role == 'admin'):
+            dto['role'] = data.role
+
+        user = UserModel(**dto)
         self.db.add(user)
         await self.db.commit()
         await self.db.refresh(user)
