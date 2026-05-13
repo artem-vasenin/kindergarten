@@ -1,6 +1,6 @@
 import logging
 from typing import Annotated
-from sqlalchemy import select
+from sqlalchemy import select, desc
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException, Request
 
@@ -81,7 +81,7 @@ class UserService:
 
 
     async def get_list(self)->list[UserFull]:
-        users = (await self.db.execute(select(UserModel))).scalars()
+        users = (await self.db.execute(select(UserModel).order_by(desc(UserModel.id)))).scalars()
         return [self.transform_user(i) for i in users]
 
 

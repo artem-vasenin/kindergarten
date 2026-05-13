@@ -9,7 +9,7 @@ export const usersService = {
     return await http.get<IProfile[]>('/user');
   },
   async update(uid: number, data: IProfileUpdate): Promise<AxiosResponse<IProfile>> {
-    return await http.patch<IProfile>(`/user/login/${uid}`, data);
+    return await http.patch<IProfile>(`/user/${uid}`, data);
   },
   async remove(uid: number): Promise<AxiosResponse<boolean>> {
     return await http.delete<boolean>(`/user/${uid}`);

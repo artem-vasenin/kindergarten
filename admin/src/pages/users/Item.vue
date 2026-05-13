@@ -2,18 +2,46 @@
 import { defineProps, ref } from 'vue';
 
 import {type IProfile, RoleType} from '@/types/profile.types';
+import { usersService } from '@/http/users.http';
+import {useUsersStore} from "@/store/users.store.ts";
 
+const store = useUsersStore();
 const props = defineProps<{ item: IProfile }>();
 const edit = ref<boolean>(false);
-const email = ref<string>(props.item.email);
+const password = ref<string>('');
 const role = ref<RoleType>(props.item.role);
+
+const toggle = () => {
+  edit.value = !edit.value;
+  role.value = props.item.role;
+  password.value = ''
+}
+
+const save = async () => {
+  try {
+    await usersService.update(props.item.id, { role: role.value, password: password.value });
+    await store.getList();
+    toggle();
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const remove = async () => {
+  try {
+    await usersService.remove(props.item.id);
+    await store.getList();
+  } catch (e) {
+    console.error(e);
+  }
+};
 </script>
 
 <template>
 <div class="item">
   <div class="actions-top">
-    <button class="btn btn_edit" @click="edit = !edit">{{edit ? 'Отменить' : 'Изменить'}}</button>
-    <button class="btn btn_del" :disabled="edit">Удалить</button>
+    <button class="btn btn_edit" @click="toggle">{{edit ? 'Отменить' : 'Изменить'}}</button>
+    <button class="btn btn_del" :disabled="edit" @click="remove">Удалить</button>
   </div>
   <div class="row row_id">
     <span class="label">ID</span>
@@ -21,16 +49,22 @@ const role = ref<RoleType>(props.item.role);
   </div>
   <div class="row row_email">
     <span class="label">Email</span>
-    <span v-if="!edit" class="value">{{props.item.email}}</span>
-    <input v-else type="text" class="input" v-model="email">
+    <span class="value">{{props.item.email}}</span>
   </div>
   <div class="row row_role">
     <span class="label">Role</span>
     <span v-if="!edit" class="value">{{props.item.role}}</span>
-    <input v-else type="text" class="input" v-model="role">
+    <select v-else v-model="role" class="select">
+      <option value="admin">Admin</option>
+      <option value="guest">Guest</option>
+    </select>
+  </div>
+  <div class="row row_role">
+    <span v-if="edit" class="label">Password</span>
+    <input v-if="edit" type="text" class="input" v-model="password">
   </div>
   <div class="actions-bottom">
-    <button v-if="edit" class="btn btn_save">Сохранить</button>
+    <button v-if="edit" class="btn btn_save" @click="save">Сохранить</button>
   </div>
 </div>
 </template>
@@ -42,7 +76,8 @@ const role = ref<RoleType>(props.item.role);
   padding: 16px;
   display: flex;
   flex-direction: column;
-  min-height: 200px;
+  min-height: 230px;
+  box-shadow: 2px 2px 6px rgb(0 0 0 / 50%);
 }
 .actions-top, .actions-bottom {
   display: flex;
@@ -85,8 +120,17 @@ const role = ref<RoleType>(props.item.role);
   justify-content: space-between;
   align-items: center;
   color: white;
+  height: 26px;
 }
-.input {
+.label {
+  flex: 0 0 70px;
+}
+.value, .input, .select {
+  flex: calc(100% - 70px);
+  max-width: calc(100% - 70px);
+  text-align: right;
+}
+.input, .select {
   background-color: transparent;
   border: none;
   outline: none;
