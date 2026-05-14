@@ -13,5 +13,9 @@ export const useUsersStore = defineStore("users", () => {
     list.value = res.data;
   };
 
-  return { list, getList };
+  const clear = () => {
+    list.value = [];
+  };
+
+  return { list, getList, clear };
 }, { persist: true });

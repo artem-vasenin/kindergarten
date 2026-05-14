@@ -43,6 +43,7 @@ const save = async (e: Event) => {
 };
 
 onMounted(async () => {
+  await userStore.getList();
   await store.getList();
 })
 </script>
