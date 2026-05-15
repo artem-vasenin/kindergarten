@@ -1,37 +1,51 @@
-from fastapi import FastAPI
+import logging
+from fastapi import FastAPI, APIRouter
+from fastapi.middleware.cors import CORSMiddleware
 
-from app.core.db import DbSessionDeps
-# from app.core.middlewares import TimingMW
-# from .project.routes import router as projectRouter
-# from .task.routes import router as taskRouter
-# from .user.routes import router as userRouter
 from app.core.settings import Settings
+# from app.user.client_routes import router as user_client_router
+# from app.user.admin_routes import router as user_admin_router
+# from app.task.client_routes import router as task_client_router
+# from app.task.admin_routes import router as task_admin_router
 
 
-def create_app()->FastAPI:
+logger = logging.getLogger(__name__)
+
+def create_app() -> FastAPI:
     settings = Settings() # type: ignore[call-arg]
     new_app = FastAPI(
-        title=settings.app.title,
-        description=settings.app.description,
-        version=settings.app.version,
+        title=settings.app_name,
         openapi_tags=[
-            # {'name': 'Projects', 'description': 'Проекты'},
-            # {'name': 'Tasks', 'description': 'Задачи'},
-            # {'name': 'Auth', 'description': 'Пользователи'},
+            # {'name': 'Client Users', 'description': 'Роуты пользователей для клиентов'},
+            # {'name': 'Admin Users', 'description': 'Роуты пользователей для администраторов'},
+            # {'name': 'Client Tasks', 'description': 'Роуты задач для клиентов'},
+            # {'name': 'Admin Tasks', 'description': 'Роуты задач для администраторов'},
         ]
     )
-    new_app.state.settings = settings
-    # new_app.include_router(projectRouter)
-    # new_app.include_router(taskRouter)
-    # new_app.include_router(userRouter)
+    client_router = APIRouter(prefix="/api")
+    admin_router = APIRouter(prefix="/api/admin")
 
-    # new_app.add_middleware(TimingMW)
+    # client_router.include_router(user_client_router)
+    # client_router.include_router(task_client_router)
+    # admin_router.include_router(user_admin_router)
+    # admin_router.include_router(task_admin_router)
+
+    new_app.state.settings = settings
+    new_app.include_router(client_router)
+    new_app.include_router(admin_router)
+
+    new_app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[
+            'http://localhost:5173',
+        ],
+        allow_credentials=True,
+        allow_methods=['*'],
+        allow_headers=['*'],
+    )
+
+    logger.info(f"Запускаем сервер: {settings.app_name}")
+
     return new_app
 
 app = create_app()
-
-@app.get('/')
-async def test(s: DbSessionDeps):
-    from .core.db import check
-    res = await check(s)
-    return {'hello': 'world', 'data': res}

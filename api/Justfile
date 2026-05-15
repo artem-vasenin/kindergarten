@@ -3,11 +3,11 @@
 @a_default:
     just --list
 
-@dev:
-    uv run uvicorn app.main:app --reload
+dev:
+    uv run uvicorn app.main:app --reload --log-config log.conf.yaml
 
 @db:
-    uv run psql -h localhost -p 5433 -U postgres -d box
+    uv run psql -h localhost -p 5433 -U postgres -d todo
 
 @makemigrations name:
     uv run alembic revision --autogenerate -m "{{name}}"
@@ -17,3 +17,9 @@
 
 @migrate_down steps:
     uv run alembic downgrade -{{steps}}
+
+@lint:
+    uv run ruff check --fix
+
+@format:
+    uv run ruff format

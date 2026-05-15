@@ -1,45 +1,17 @@
-from typing import Annotated
-from fastapi import Depends, Request
-from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class BDSettings(BaseModel):
-    url: str
-
-class AuthSettings(BaseModel):
-    secret: str
-    time: int
-
-class AppSettings(BaseModel):
-    title: str = 'Box'
-    description: str = 'Sites CMS Box'
-    version: str = '0.0.1'
-    debug: bool = False
-
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8', extra='ignore')
-    db_url: str = Field(validation_alias='DATABASE_URL')
-    db_url_sync: str = Field(validation_alias='DATABASE_URL_SYNC')
+    app_name: str = 'KinderGarden'
+
+    database_url: str
+    database_url_sync: str
+
     jwt_secret: str
     jwt_time: int
 
-    @property
-    def db(self)->BDSettings:
-        return BDSettings(url=self.db_url)
-
-    @property
-    def app(self)->AppSettings:
-        return AppSettings()
-
-    @property
-    def auth(self)->AuthSettings:
-        return AuthSettings(secret=self.jwt_secret, time=self.jwt_time)
-
-def get_settings(req: Request)->Settings:
-    return req.app.state.settings
-
-SettingsDeps = Annotated[
-    Settings,
-    Depends(get_settings)
-]
+    model_config = SettingsConfigDict(
+        env_file='.env',
+        env_file_encoding='utf-8',
+        extra='ignore'
+    )

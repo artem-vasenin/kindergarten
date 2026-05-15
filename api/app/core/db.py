@@ -1,36 +1,32 @@
-from typing import AsyncGenerator, Annotated
-from fastapi import Depends
-
-from app.core.settings import Settings
+from typing import Annotated
 from sqlalchemy import select
-from sqlalchemy.orm import DeclarativeBase
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import (
-    create_async_engine,
     AsyncSession,
     async_sessionmaker,
+    create_async_engine,
 )
+from sqlalchemy.orm import DeclarativeBase
 
+from app.core.settings import Settings
 
-settings = Settings() # type: ignore[call-arg]
-engine = create_async_engine(
-    settings.db_url,
-    echo=False,
-    pool_pre_ping=True,
-)
-session = async_sessionmaker(engine, expire_on_commit=False)
-
-async def get_session() -> AsyncGenerator[AsyncSession, None]:
-    async with session() as s:
-        yield s
-
-async def check(s: AsyncSession):
-    res = await s.execute(select(1))
-    return res.scalar_one()
-
-DbSessionDeps = Annotated[
-    AsyncSession,
-    Depends(get_session),
-]
 
 class Base(DeclarativeBase):
     ...
+
+settings = Settings() # type: ignore[call-arg]
+engine = create_async_engine(settings.database_url, echo=True)
+async_session_factory = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+
+async def get_db():
+    async with async_session_factory() as session:
+        yield session
+
+async def test_db(session: AsyncSession):
+    res = await session.execute(select(1))
+    return res.scalar_one()
+
+DbDeps = Annotated[
+    AsyncSession,
+    Depends(get_db),
+]
