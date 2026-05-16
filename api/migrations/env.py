@@ -5,8 +5,9 @@ from alembic import context
 
 from app.core.db import Base
 from app.core.settings import Settings
-# from app.user.models import UserModel
-# from app.task.models import TaskModel
+from app.cms.fields.models import *
+from app.cms.templates.models import *
+from app.cms.entries.models import *
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

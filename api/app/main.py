@@ -1,7 +1,9 @@
 import logging
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import select
 
+from app.core.db import DbDeps
 from app.core.settings import Settings
 # from app.user.client_routes import router as user_client_router
 # from app.user.admin_routes import router as user_admin_router
@@ -49,3 +51,7 @@ def create_app() -> FastAPI:
     return new_app
 
 app = create_app()
+@app.get('/')
+def test(db: DbDeps):
+    # res = db.execute(select(1))
+    return {'res': 1}
