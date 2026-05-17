@@ -1,8 +1,8 @@
 """create_simple_fields
 
-Revision ID: c7fea257a7ec
+Revision ID: 92bb528e4948
 Revises: 
-Create Date: 2026-05-17 09:36:36.707148
+Create Date: 2026-05-17 22:28:10.324938
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision: str = 'c7fea257a7ec'
+revision: str = '92bb528e4948'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -25,7 +25,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('name', sa.String(length=128), nullable=False),
     sa.Column('description', sa.String(length=1024), nullable=True),
-    sa.Column('field_type', sa.Enum('STR', 'INT', 'FLOAT', 'DATETIME', 'BOOL', 'FILES', 'REPEATER', 'BLOCKS', 'JSON', name='fieldtype'), nullable=False),
+    sa.Column('field_type', sa.String(length=32), nullable=False),
     sa.Column('default_value', postgresql.JSONB(astext_type=sa.Text()), nullable=True),
     sa.Column('settings', postgresql.JSONB(astext_type=sa.Text()), nullable=False),
     sa.PrimaryKeyConstraint('id')
@@ -68,8 +68,7 @@ def upgrade() -> None:
     sa.Column('group', sa.String(length=128), nullable=True),
     sa.ForeignKeyConstraint(['field_id'], ['fields.id'], ),
     sa.ForeignKeyConstraint(['template_id'], ['templates.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('template_id', 'field_id', 'id')
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 

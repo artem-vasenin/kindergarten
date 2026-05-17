@@ -6,13 +6,10 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
     create_async_engine,
 )
-from sqlalchemy.orm import DeclarativeBase
 
 from app.core.settings import Settings
+import app.cms.models
 
-
-class Base(DeclarativeBase):
-    ...
 
 settings = Settings() # type: ignore[call-arg]
 engine = create_async_engine(settings.database_url, echo=True)

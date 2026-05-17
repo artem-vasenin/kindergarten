@@ -1,14 +1,11 @@
 import logging
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import select
 
 from app.core.db import DbDeps
 from app.core.settings import Settings
-# from app.user.client_routes import router as user_client_router
-# from app.user.admin_routes import router as user_admin_router
+from app.cms.fields.routes import router as fields_admin_router
 # from app.task.client_routes import router as task_client_router
-# from app.task.admin_routes import router as task_admin_router
 
 
 logger = logging.getLogger(__name__)
@@ -30,7 +27,7 @@ def create_app() -> FastAPI:
     # client_router.include_router(user_client_router)
     # client_router.include_router(task_client_router)
     # admin_router.include_router(user_admin_router)
-    # admin_router.include_router(task_admin_router)
+    admin_router.include_router(fields_admin_router)
 
     new_app.state.settings = settings
     new_app.include_router(client_router)

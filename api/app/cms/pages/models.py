@@ -4,7 +4,7 @@ from sqlalchemy import ForeignKey, DateTime, Integer, String
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.core.db import Base
+from app.core.base import Base
 
 
 if TYPE_CHECKING:
@@ -15,10 +15,10 @@ class PageModel(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     template_id: Mapped[int] = mapped_column(ForeignKey('templates.id'), nullable=False)
-    template: Mapped['TemplateModel'] = relationship(back_populates='pages')
+    template: Mapped['TemplateModel'] = relationship('TemplateModel', back_populates='pages')
     parent_id: Mapped[int | None] = mapped_column(ForeignKey('pages.id'), nullable=True)
-    parent: Mapped['PageModel'] = relationship(remote_side='PageModel.id', back_populates='children')
-    children: Mapped[list['PageModel']] = relationship(back_populates='parent')
+    parent: Mapped['PageModel'] = relationship('PageModel', remote_side='PageModel.id', back_populates='children')
+    children: Mapped[list['PageModel']] = relationship('PageModel', back_populates='parent')
 
     title: Mapped[str] = mapped_column(String(256), nullable=False)
     slug: Mapped[str] = mapped_column(String(256), nullable=False, index=True)
