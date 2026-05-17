@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Any
 from sqlalchemy import ForeignKey, DateTime, Integer, String
 from sqlalchemy.dialects.postgresql import JSONB
@@ -25,10 +25,10 @@ class PageModel(Base):
     path: Mapped[str] = mapped_column(String(1024), nullable=False, index=True)
     status: Mapped[str] = mapped_column(String(32), nullable=False, default='draft')
     sort: Mapped[int] = mapped_column(Integer(), nullable=False, default=0)
-    data: Mapped[dict] = mapped_column(JSONB, nullable=False, default=dict)
+    data: Mapped[dict] = mapped_column(JSONB, nullable=False, default=lambda: {})
     published_at: Mapped[datetime | None] = mapped_column(DateTime(), nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(), default=datetime.utcnow)
-    updated_at: Mapped[datetime] = mapped_column(DateTime(), default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime(), default=lambda: datetime.now(UTC))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(), default=lambda: datetime.now(UTC), onupdate=lambda: datetime.now(UTC))
 
     def get_value(self, template_field_id: int, default=None):
         return self.data.get(str(template_field_id), default)

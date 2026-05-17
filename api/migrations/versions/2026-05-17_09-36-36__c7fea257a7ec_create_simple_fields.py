@@ -1,8 +1,8 @@
 """create_simple_fields
 
-Revision ID: 8b016de424a8
+Revision ID: c7fea257a7ec
 Revises: 
-Create Date: 2026-05-17 09:30:17.947197
+Create Date: 2026-05-17 09:36:36.707148
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision: str = '8b016de424a8'
+revision: str = 'c7fea257a7ec'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
