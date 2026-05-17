@@ -7,7 +7,7 @@ from app.core.db import Base
 from app.core.settings import Settings
 from app.cms.fields.models import *
 from app.cms.templates.models import *
-from app.cms.entries.models import *
+from app.cms.pages.models import *
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -7,7 +7,7 @@ from app.core.db import Base
 
 if TYPE_CHECKING:
     from app.cms.fields.models import FieldModel
-    from app.cms.entries.models import EntryModel
+    from app.cms.pages.models import PageModel
 
 class TemplateModel(Base):
     __tablename__ = "templates"
@@ -17,7 +17,7 @@ class TemplateModel(Base):
     description: Mapped[str] = mapped_column(String(1024), nullable=True, default='')
 
     fields: Mapped[list['TemplateFieldModel']] = relationship(back_populates='template', cascade='all, delete-orphan')
-    entries: Mapped[list['EntryModel']] = relationship(back_populates='template', cascade='all, delete-orphan')
+    entries: Mapped[list['PageModel']] = relationship(back_populates='template', cascade='all, delete-orphan')
 
 
 class TemplateFieldModel(Base):
