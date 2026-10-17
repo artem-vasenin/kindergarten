@@ -1,1 +1,28 @@
-<header>Header</header>
+{% load static %}
+<header class="header">
+  <nav class="nav">
+    <a href="{% url 'page_home:details' %}" class="header__logo logo">
+      <img class="header__logo-img" src="{% static 'img/logo.png' %}" alt="Logo">
+    </a>
+    <ul class="header__list">
+      <li class="header__list-item">
+        <a href="{% url 'news:list' %}" class="header__list-link">Новости</a>
+      </li>
+      <li class="header__list-item">
+        <a href="{% url 'team:list' %}" class="header__list-link">Коллектив</a>
+      </li>
+      <li class="header__list-item">
+        <a href="{% url 'schedule:details' %}" class="header__list-link">Расписание</a>
+      </li>
+      <li class="header__list-item">
+        <a href="{% url 'docs:details' %}" class="header__list-link">Документы</a>
+      </li>
+      <li class="header__list-item">
+        <a href="{% url 'docs:details' %}" class="header__list-link">Материалы</a>
+      </li>
+      <li class="header__list-item">
+        <a href="{% url 'contacts:details' %}" class="header__list-link">Контакты</a>
+      </li>
+    </ul>
+  </nav>
+</header>

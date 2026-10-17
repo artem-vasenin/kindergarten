@@ -1,0 +1,42 @@
+:root {
+    --color-yellow-light: #FDF6EC;
+    --color-yellow: #FFEDB7;
+    --color-green-light: #E2EFCA;
+    --color-green: #9EB378;
+    --color-red: #FF7C7C;
+    --color-light: #FFFFFF;
+    --color-dark: #444444;
+    --color-violet: #CABBE9;
+
+    --font-m: Montserrat;
+    --font-n: Nunito;
+}
+
+/* --- base --- */
+html {
+    background-color: var(--color-yellow-light);
+    color: var(--color-dark);
+    font-family: var(--font-m), sans-serif;
+    font-size: 16px;
+}
+
+/* --- header --- */
+.header {
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+/* --- footer --- */
+.footer {
+    .footer__row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .footer__col {
+        flex: 1;
+    }
+}

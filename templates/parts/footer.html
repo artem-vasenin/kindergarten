@@ -1,1 +1,71 @@
-<footer>Footer</footer>
+{% load static %}
+<footer class="footer">
+  <div class="footer__row">
+    <div class="footer__col">
+      <a href="{% url 'page_home:details' %}" class="footer__logo logo">
+        <img class="footer__logo-img logo-img" src="{% static 'img/logo.png' %}" alt="Logo">
+      </a>
+      <ul class="social">
+        <li class="social__item">
+          <div class="social__link">
+            <a href="{% url 'page_home:details' %}" class="footer__logo logo">
+              <img class="footer__logo-img logo-img" src="{% static 'img/soc_vk.svg' %}" alt="Social">
+            </a>
+          </div>
+        </li>
+        <li class="social__item">
+          <div class="social__link">
+            <a href="{% url 'page_home:details' %}" class="footer__logo logo">
+              <img class="footer__logo-img logo-img" src="{% static 'img/soc_vk.svg' %}" alt="Social">
+            </a>
+          </div>
+        </li>
+        <li class="social__item">
+          <div class="social__link">
+            <a href="{% url 'page_home:details' %}" class="footer__logo logo">
+              <img class="footer__logo-img logo-img" src="{% static 'img/soc_vk.svg' %}" alt="Social">
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <ul class="footer__list">
+        <li class="footer__list-item">
+          <a href="{% url 'news:list' %}" class="footer__list-link">Новости</a>
+        </li>
+        <li class="footer__list-item">
+          <a href="{% url 'team:list' %}" class="footer__list-link">Коллектив</a>
+        </li>
+        <li class="footer__list-item">
+          <a href="{% url 'schedule:details' %}" class="footer__list-link">Расписание</a>
+        </li>
+        <li class="footer__list-item">
+          <a href="{% url 'docs:details' %}" class="footer__list-link">Документы</a>
+        </li>
+        <li class="footer__list-item">
+          <a href="{% url 'docs:details' %}" class="footer__list-link">Материалы</a>
+        </li>
+        <li class="footer__list-item">
+          <a href="{% url 'contacts:details' %}" class="footer__list-link">Контакты</a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <ul class="footer__list">
+        <li class="footer__list-item">
+          ЯНАО, г.Ноябрьск, ул.Ленина 21
+        </li>
+        <li class="footer__list-item">
+          Пн-Пт с 8:00 до 20:00
+        </li>
+        <li class="footer__list-item">
+          <a href="tel:88009999999" class="footer__list-link">8 (800) 999-99-99</a>
+        </li>
+        <li class="footer__list-item">
+          <a href="mailto:sad@mail.ru" class="footer__list-link">sad@mail.ru</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
