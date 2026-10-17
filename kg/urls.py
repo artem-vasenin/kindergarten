@@ -17,7 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+#     'page_photo',
+#     'page_video',
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('page_home.urls')),
+    path('contacts/', include('page_contacts.urls')),
+    path('documents/', include('page_docs.urls')),
+    path('faq/', include('page_faq.urls')),
+    path('news/', include('page_news.urls')),
+    path('schedule/', include('page_schedule.urls')),
+    path('team/', include('page_team.urls')),
 ]
