@@ -10,33 +10,134 @@
 
     --font-m: Montserrat;
     --font-n: Nunito;
+
+    --header-bg: var(--color-green);
+
+    --footer-bg: var(--color-green);
 }
 
 /* --- base --- */
-html {
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+.body {
     background-color: var(--color-yellow-light);
     color: var(--color-dark);
     font-family: var(--font-m), sans-serif;
+    display: flex;
+    flex-direction: column;
     font-size: 16px;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.main {
+    flex: 1;
+}
+
+/* --- logo --- */
+.logo {
+    display: inline-block;
+    width: 36px;
+
+    .logo__img {
+        max-width: 100%;
+        line-height: 1;
+    }
 }
 
 /* --- header --- */
 .header {
+    background-color: var(--header-bg);
+
     .nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 16px;
+    }
+    .header__list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 10px;
+    }
+    .header__list-item {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .header__list-link {
+        color: var(--color-light);
     }
 }
 
 /* --- footer --- */
 .footer {
+    background-color: var(--footer-bg);
+    color: var(--color-light);
+    padding: 16px;
+
     .footer__row {
         display: flex;
         justify-content: space-between;
         gap: 20px;
     }
     .footer__col {
-        flex: 1;
+        &:first-child {
+            flex: 0 0 200px;
+            max-width: 200px;
+        }
+        &:nth-child(2) {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        &:last-child {
+            flex: 0 0 270px;
+            max-width: 270px;
+        }
+    }
+    .social {
+        padding: 30px 0 0;
+        margin: 0;
+        display: flex;
+        gap: 10px;
+
+        .social__item {
+            list-style: none;
+        }
+
+        .social__icon {
+            font-size: 30px;
+            line-height: 1;
+            color: var(--color-yellow);
+        }
+    }
+    .footer__list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    .footer__list-item {
+        padding: 5px 0;
     }
 }
